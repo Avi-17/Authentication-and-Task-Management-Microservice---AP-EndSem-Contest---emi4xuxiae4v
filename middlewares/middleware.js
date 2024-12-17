@@ -6,7 +6,7 @@ const middleware = async (req, res, next) => {
     if (!token) {
       return res.status(401).json({ error: "No token provided" });
     }
-    
+
     const decodedPayload = jwt.decode(token, process.env.JWT_SECRET);
     req.id = decodedPayload.id;
 
@@ -19,7 +19,7 @@ const middleware = async (req, res, next) => {
     next();
   } catch (error) {
     console.log("Error in middleware: ", error.message);
-    return res.status(500).json({ error: "Internal Server Error" });
+    return res.status(401).json({ error: "Internal Server Error" });
   }
 };
 
