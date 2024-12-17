@@ -10,7 +10,7 @@ const createTask = async (req, res) => {
     const newTask = await prisma.task.create({
       data: {
         task: task,
-        userId: req.id,
+        userId: Number(req.id),
       },
     });
 
