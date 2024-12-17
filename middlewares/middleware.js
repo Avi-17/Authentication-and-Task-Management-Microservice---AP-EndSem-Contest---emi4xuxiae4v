@@ -13,7 +13,7 @@ const middleware = async (req, res, next) => {
     }
 
     const decodedPayload = jwt.decode(token, process.env.JWT_SECRET);
-    req.id = decodedPayload.userId;
+    req.id = decodedPayload.id;
     
     next();
   } catch (error) {

@@ -20,7 +20,7 @@ const loginController = async (req, res) => {
       return res.status(401).json({ error: "Invalid credentials" });
     }
 
-    const token = jwt.sign({ userId }, process.env.JWT_SECRET);
+    const token = jwt.sign({ id:userId }, process.env.JWT_SECRET);
 
     return res.status(200).json({
       message: "Login successful",
