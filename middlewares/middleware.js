@@ -6,14 +6,15 @@ const middleware = async (req, res, next) => {
     if (!token) {
       return res.status(401).json({ error: "No token provided" });
     }
+    
+    const decodedPayload = jwt.decode(token, process.env.JWT_SECRET);
+    req.id = decodedPayload.id;
 
     const isValid = jwt.verify(token, process.env.JWT_SECRET);
     if (!isValid) {
       return res.status(401).json({ error: "Unauthorized" });
     }
 
-    const decodedPayload = jwt.decode(token, process.env.JWT_SECRET);
-    req.id = decodedPayload.id;
     
     next();
   } catch (error) {
