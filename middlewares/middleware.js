@@ -19,7 +19,7 @@ const middleware = async (req, res, next) => {
     next();
   } catch (error) {
     console.log("Error in middleware: ", error.message);
-    return res.status(401).json({ error: "Internal Server Error" });
+    return res.status(401).json({ error: "Unauthorized" });
   }
 };
 
